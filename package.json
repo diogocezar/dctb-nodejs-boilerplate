@@ -1,0 +1,29 @@
+{
+  "name": "dctb-nodejs-mongodb-boilerplate",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./app/bin/www"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-sass": "3.1.0",
+    "gulp-svgo": "^1.2.5",
+    "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "express-ejs-layouts": "^2.4.0",
+    "http-errors": "~1.6.2",
+    "mongoose": "^5.0.17",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.17.4"
+  }
+}

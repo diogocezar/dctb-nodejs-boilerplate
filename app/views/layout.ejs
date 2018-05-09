@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lista de Produtos</title>
+	<link rel="stylesheet" type="text/css" href="<%=path%>assets/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=path%>assets/css/<%=dist%>/base/base.css">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/products/list">Lista de Produtos</a></li>
+				<li><a href="/products/form">Inserir Produto</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="container">
+			<%- body %>
+		</div>
+	</main>
+	<footer>
+		Lista de Produtos - Um simples exemplo em NodeJS + Express e MongoDB
+	</footer>
+</body>
+</html>

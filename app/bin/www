@@ -1,0 +1,72 @@
+#!/usr/bin/env node
+
+/**
+ * Main Class to Execute Project
+ */
+class www{
+	/**
+	 * Constructor
+	 */
+	constructor(){
+		this.config = require('../config/config')
+		this.app    = require('../app')
+		this.http   = require('http')
+		this.port   = this.normalizePort(process.env.PORT || this.config.port || '3000')
+
+		this.app.set('port', this.port)
+
+		this.server = this.http.createServer(this.app)
+
+		this.server.listen(this.port)
+		this.server.on('error', this.onError)
+		this.server.on('listening', this.onListening)
+	}
+
+	/**
+	 * Method to normalize some port
+	 * @param val Value to normalize
+	 */
+	normalizePort(val) {
+		const port = parseInt(val, 10)
+		if (isNaN(port))
+			return val
+		if (port >= 0)
+			return port
+		return false
+	}
+	/**
+	 * Event listener for HTTP server "error" event
+	 * @param error Error to handle
+	 */
+	onError(error) {
+		if (error.syscall !== 'listen') throw error;
+		const bind = typeof port === 'string'
+		? 'Pipe ' + port
+		: 'Port ' + port
+		switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1)
+			break
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1)
+			break
+		default:
+			throw error
+		}
+	}
+	/**
+	 * Event listener for HTTP server "listening" event.
+	 */
+	onListening() {
+		const addr  = this.address()
+		const debug = require('debug')('dctb-nodejs-mongodb-boilerplate:server')
+		const bind = typeof addr === 'string' ?
+			'pipe ' + addr :
+			'port ' + addr.port;
+		debug('Listening on ' + bind)
+	}
+}
+
+new www()

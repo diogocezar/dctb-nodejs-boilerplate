@@ -1,0 +1,37 @@
+/// Sass Shared Base Style
+/// @author Diogo Cezar <diogo@diogocezar.com>
+
+// Charset
+@charset 'utf-8';
+
+// Imports
+@import 'includes/animations.scss';
+@import 'includes/mixins.scss';
+@import 'includes/colors.scss';
+@import 'includes/fonts.scss';
+@import 'includes/sizes.scss';
+@import 'includes/carousels.scss';
+@import 'includes/shared.scss';
+
+body {
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+header .navbar {
+	border-radius: 0;
+	margin: 0;
+}
+
+main {
+	min-height: 500px;
+	padding: 50px 0;
+}
+
+footer {
+	padding: 30px 0;
+	font-size: 14px;
+	color: #BBB;
+	background: #222;
+	text-align: center;
+}

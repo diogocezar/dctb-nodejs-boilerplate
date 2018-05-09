@@ -1,0 +1,26 @@
+<%- contentFor('body') %>
+<link rel="stylesheet" type="text/css" href="<%=path%>assets/css/<%=dist%>/pages/products.css">
+<div class="jumbotron text-center">
+    <h1>Formulário de Produto</h1>
+    <div class="row">
+		<div class="col-lg-12">
+			<form action="/products/save" method="POST">
+				<p>
+					<label>Nome:
+						<input type="text" name="name" value="<%= data.name %>" />
+					</label>
+				</p>
+				<p>
+					<label>Preço:
+						<input type="text" name="price" value="<%= data.price %>" />
+					</label>
+				</p>
+				<p>
+					<a href="../../">Cancelar</a> |
+					<input type="hidden" name="id" value="<%= data._id %>" />
+					<input type="submit" value="Salvar" />
+				</p>
+			</form>
+		</div>
+    </div>
+</div>

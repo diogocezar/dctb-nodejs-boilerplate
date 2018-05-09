@@ -1,0 +1,233 @@
+/// dctb-sass
+/// Sass Boilerplate to start new project with some functionalities.
+/// @author Diogo Cezar <diogo@diogocezar.com>
+
+// Shared
+// Shared Configurations used in all pages
+
+*{
+  outline: none;
+}
+
+body{
+  font-size: $size-base;
+  font-family: $font-primary;
+  background-color: $color-white;
+  color: $color-black;
+}
+*,
+*:after,
+*:before {
+  @include border-box;
+  -webkit-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+// Forms Reset IOS
+
+input, textarea, select{
+  -webkit-appearance: none;
+  border-radius: 0px;
+}
+
+// Links
+
+a{
+  color: $color-black;
+  text-decoration: none;
+  &:hover{
+    color: $color-black;
+    text-decoration: none;
+  }
+  &:focus{
+    color: $color-black;
+    text-decoration: none;
+  }
+  &:active{
+    color: $color-black;
+    text-decoration: none;
+  }
+  &:visited{
+    color: $color-black;
+    text-decoration: none;
+  }
+}
+
+// Selection
+
+::-moz-selection {
+  color: $color-dark-blue;
+  background: $color-black;
+}
+
+::selection {
+  color: $color-dark-blue;
+  background: $color-black;
+}
+
+// Headings
+
+h1, h2, h3, h4{
+  font-family: $font-primary;
+  color: $color-black;
+}
+
+h1{
+  font-size: $size-s0;
+  font-weight: 600;
+}
+h2{
+  font-size: $size-s1;
+  font-weight: 600;
+}
+h3{
+	font-size: $size-s2;
+  font-weight: 600;
+}
+h4{
+  font-size: $size-s3;
+  font-weight: 600;
+}
+
+.title-decorative{
+  font-family: $font-secondary;
+  color: $color-red;
+  font-size: 0.8em;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-top: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:after{
+    content: '';
+    height: 60px;
+    width: 2px;
+    background: #B0B0B0;
+    position: absolute;
+    top: 15px;
+    left: calc(50% - 1px);
+    @include responsive(s2){
+      top: -50px;
+      height: 30px;
+    }
+  }
+}
+
+.title-no-line{
+  margin-top: 20px;
+  &:after{
+    display:none!important;
+  }
+}
+
+.title-small{
+  font-family: $font-secondary;
+  color: $color-red;
+  font-size: 0.8em;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.title-big{
+  font-size: 3.5em;
+  font-weight: 700;
+  line-height: 1.2em;
+  @include responsive(s4){
+    font-size: 2.5em!important;
+  }
+}
+
+// Paragraph
+
+p{
+  font-size: $size-normal;
+}
+
+.p-default{
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.65em;
+  @include responsive(s2){
+    font-size: 0.95em;
+    line-height: 1.5em;
+  }
+}
+
+// Generics
+
+.center{
+  text-align: center;
+}
+
+.img-center{
+  margin: 0 auto;
+}
+
+.no-margin{
+  margin:0px;
+}
+
+.no-padding{
+  padding:0px;
+}
+
+.clear{
+  clear: both;
+}
+
+// Equal Height
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+// First Section Spacer Mobile
+
+.first-section{
+  margin-top: 140px;
+  position: relative;
+  float: left;
+  width: 100%;
+  @include responsive(s2){
+    margin-top: 70px!important;
+    padding-top: 50px!important;
+  }
+  @include responsive(s4){
+    margin-top: 60px!important;
+    padding-top: 40px!important;
+  }
+}
+
+// Pageloader
+
+#preloader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-gray;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.preload-img{
+  z-index: 99999;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    height: 200px;
+    width: 295px;
+  }
+}
