@@ -2,11 +2,12 @@
  * Setting Configuration Class
  */
 class Config{
-	constructor(dataBase, port, dist, defaultPath){
+	constructor(dataBase, port, dist, defaultPath, secret){
 		this.dataBase    = dataBase
 		this.port        = port
 		this.dist        = dist
 		this.defaultPath = defaultPath
+		this.secret      = secret
 	}
 }
 
@@ -22,11 +23,12 @@ const dataBaseConfig = {
 const port        = 3000
 const dist        = 'src'
 const defaultPath = './'
+const secret      = 'asimplesecret'
 
 /**
  * Setting objetct to return
  */
-const config = new Config(dataBaseConfig, port, dist, defaultPath)
+const config = new Config(dataBaseConfig, port, dist, defaultPath, secret)
 /**
  * Exporting Module
  */

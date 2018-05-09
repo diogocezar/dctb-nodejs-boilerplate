@@ -3,8 +3,8 @@ const BaseSchema = require('./BaseSchema');
 class ProductSchema extends BaseSchema{
     constructor() {
         super('products', {
-            name: String,
-            price: Number
+            name  : String,
+            price : Number
         })
     }
 }

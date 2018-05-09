@@ -10,8 +10,10 @@ class App{
 		this.expressLayout  = require('express-ejs-layouts')
 		this.bodyParser     = require('body-parser')
 
-		this.indexRouter    = require('./routes/index')
-		this.productsRouter = require('./routes/products')
+		this.indexRouter     = require('./routes/index')
+		this.productRouter   = require('./routes/product')
+		this.userRouter      = require('./routes/user')
+		this.underAuthRouter = require('./routes/underAuth');
 
 		this.app = this.express()
 
@@ -25,7 +27,9 @@ class App{
 		this.app.use(this.express.static(this.path.join(__dirname, '../public')))
 
 		this.app.use('/', this.indexRouter)
-		this.app.use('/products', this.productsRouter)
+		this.app.use('/product', this.productsRouter)
+		this.app.use('/user', this.userRouter)
+		this.app.use('/under-auth', this.underAuthRouter)
 
 		this.app.use(function (req, res, next) {
 			const createError = require('http-errors')
@@ -33,7 +37,7 @@ class App{
 		});
 
 		this.app.use(function (err, req, res, next) {
-			console.log(err)
+			//console.log(err)
 			const helperResponse = require('./helpers/HelperResponse')
 			res.locals.message = err.message
 			res.locals.error = req.app.get('env') === 'development' ? err : {}
