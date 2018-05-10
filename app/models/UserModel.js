@@ -7,6 +7,6 @@ class UserModel extends BaseModel{
 	}
 }
 
-const userModel = new userModel();
+const userModel = new UserModel();
 
 module.exports = userModel

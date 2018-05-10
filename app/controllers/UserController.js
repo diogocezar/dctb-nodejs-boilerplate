@@ -3,7 +3,7 @@ const BaseController = require('./BaseController');
 class UserController extends BaseController{
 	constructor(){
 		super()
-		this.model               = require('../models/ProductModel')
+		this.model               = require('../models/UserModel')
 		this.helperResponse      = require('../helpers/HelperResponse')
 		this.helperResponse.path = "../"
 	}
@@ -11,20 +11,21 @@ class UserController extends BaseController{
 		this.model.findAll((err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data;
-			res.render('pages/users-list', this.helperResponse)
+			res.render('pages/user/list', this.helperResponse)
 		});
 	}
 	form(req, res) {
 		this.helperResponse.data = {name: '', login: '', password:'', admin:true, _id:''}
-		res.render('pages/users-form', this.helperResponse)
+		res.render('pages/user/form', this.helperResponse)
 	}
 	formWithData(req, res) {
 		var id = req.params.id
 		this.model.findOne(id, (err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data
+			console.log(data)
 			this.helperResponse.path = "../../"
-			res.render('pages/users-form', this.helperResponse)
+			res.render('pages/user/form', this.helperResponse)
 		})
 	}
 	save(req, res){
@@ -41,7 +42,7 @@ class UserController extends BaseController{
 				admin    : admin
 			}, (err, result) => {
 				this.onError(err)
-				res.redirect('/users/list')
+				res.redirect('/user/list')
 			})
 		} else {
 			this.model.insert({
@@ -51,7 +52,7 @@ class UserController extends BaseController{
 				admin    : admin
 			}, (err, result) => {
 				this.onError(err)
-				res.redirect('/users/list')
+				res.redirect('/user/list')
 			})
 		}
 	}
@@ -59,7 +60,7 @@ class UserController extends BaseController{
 		var id = req.params.id
 		this.model.deleteOne(id, (err, result) => {
 			this.onError(err)
-			res.redirect('/users/list')
+			res.redirect('/user/list')
 		});
 	}
 }

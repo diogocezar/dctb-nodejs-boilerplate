@@ -11,12 +11,12 @@ class ProductController extends BaseController{
 		this.model.findAll((err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data;
-			res.render('pages/products-list', this.helperResponse)
+			res.render('pages/product/list', this.helperResponse)
 		});
 	}
 	form(req, res) {
 		this.helperResponse.data = {name: '', price: '', _id:''}
-		res.render('pages/products-form', this.helperResponse)
+		res.render('pages/product/form', this.helperResponse)
 	}
 	formWithData(req, res) {
 		var id = req.params.id
@@ -24,7 +24,7 @@ class ProductController extends BaseController{
 			this.onError(err)
 			this.helperResponse.data = data
 			this.helperResponse.path = "../../"
-			res.render('pages/products-form', this.helperResponse)
+			res.render('pages/product/form', this.helperResponse)
 		})
 	}
 	save(req, res){
@@ -37,7 +37,7 @@ class ProductController extends BaseController{
 				price : price
 			}, (err, result) => {
 				this.onError(err)
-				res.redirect('/products/list')
+				res.redirect('/product/list')
 			})
 		} else {
 			this.model.insert({
@@ -45,7 +45,7 @@ class ProductController extends BaseController{
 				price : price
 			}, (err, result) => {
 				this.onError(err)
-				res.redirect('/products/list')
+				res.redirect('/product/list')
 			})
 		}
 	}
@@ -53,7 +53,7 @@ class ProductController extends BaseController{
 		var id = req.params.id
 		this.model.deleteOne(id, (err, result) => {
 			this.onError(err)
-			res.redirect('/products/list')
+			res.redirect('/product/list')
 		});
 	}
 }

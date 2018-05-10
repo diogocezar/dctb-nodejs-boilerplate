@@ -1,0 +1,21 @@
+<%- contentFor('body') %>
+<link rel="stylesheet" type="text/css" href="<%=path%>assets/css/<%=dist%>/pages/products.css">
+	<div class="jumbotron text-center">
+		<h1>Usuários</h1>
+		<div class="row">
+			<% if(!data || data.length == 0) { %>
+				<h2>Não existem usuários!</h2>
+			<% } else {
+				for (user of data) { %>
+					<div class="col-sm-4">
+						<h2>
+							<a href="./form/<%= user._id %>">
+								<%= user.name %>
+							</a>
+						</h2>
+						<a href="./delete/<%= user._id %>" onClick="return confirm('Tem certeza?')">Excluir</a>
+					</div>
+				<% } %>
+			<% } %>
+		</div>
+	</div>

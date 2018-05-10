@@ -27,7 +27,7 @@ class App{
 		this.app.use(this.express.static(this.path.join(__dirname, '../public')))
 
 		this.app.use('/', this.indexRouter)
-		this.app.use('/product', this.productsRouter)
+		this.app.use('/product', this.productRouter)
 		this.app.use('/user', this.userRouter)
 		this.app.use('/under-auth', this.underAuthRouter)
 
@@ -37,7 +37,7 @@ class App{
 		});
 
 		this.app.use(function (err, req, res, next) {
-			//console.log(err)
+			console.log(err)
 			const helperResponse = require('./helpers/HelperResponse')
 			res.locals.message = err.message
 			res.locals.error = req.app.get('env') === 'development' ? err : {}
