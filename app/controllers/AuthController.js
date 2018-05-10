@@ -9,11 +9,12 @@ class AuthController extends BaseController{
 		this.jwt                 = require('jsonwebtoken')
 		this.config              = require('../config/Config')
 	}
-	login(req, res){
+	verify(req, res){
+		const AuthController = this;
 		this.users.findOne({
 			login: req.body.login
 		}, function(err, user){
-			this.onError(err)
+			AuthController.onError(err)
 			if(!user){
 				res.json({
 					success: false,
@@ -31,14 +32,15 @@ class AuthController extends BaseController{
 					const payLoad = {
 						admin: user.admin
 					}
-					const token = this.jwt.sign(payLoad, this.config.secret, {
-						expiresIn: 60
+					const token = AuthController.jwt.sign(payLoad, AuthController.config.secret, {
+						expiresIn: '2 days'
 					})
-					res.json({
+					/*res.json({
 						sucess  : true,
 						message : 'Enjoy your token!',
 						token   : token
-					})
+					})*/
+					res.redirect('/under-auth?token=' + token)
 				}
 			}
 		})

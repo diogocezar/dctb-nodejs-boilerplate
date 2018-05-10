@@ -9,7 +9,7 @@ class IndexRoute {
 	setRoutes() {
 		this.router.get('/', function (req, res, next) {
 			const helperResponse = require('../helpers/HelperResponse')
-			res.render('pages/index', helperResponse);
+			res.render('pages/index/index', helperResponse);
 		});
 	}
 }

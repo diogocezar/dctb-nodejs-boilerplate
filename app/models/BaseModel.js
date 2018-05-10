@@ -5,7 +5,10 @@ class BaseModel{
 	constructor(model) {
 		this.model = model
 	}
-	findOne(id, callBack){
+	findOne(itemSearch, callBack){
+		this.model.findOne(itemSearch, callBack)
+	}
+	findById(id, callBack){
 		this.model.findById(id, callBack)
 	}
 	findAll(callBack){

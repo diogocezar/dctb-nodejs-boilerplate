@@ -20,7 +20,7 @@ class ProductController extends BaseController{
 	}
 	formWithData(req, res) {
 		var id = req.params.id
-		this.model.findOne(id, (err, data) => {
+		this.model.findById(id, (err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data
 			this.helperResponse.path = "../../"

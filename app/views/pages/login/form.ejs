@@ -1,0 +1,25 @@
+<%- contentFor('body') %>
+<link rel="stylesheet" type="text/css" href="<%=path%>assets/css/<%=dist%>/pages/products.css">
+<div class="jumbotron text-center">
+    <h1>Efetuar Login</h1>
+    <div class="row">
+		<div class="col-lg-12">
+			<form action="/login/verify" method="POST">
+				<p>
+					<label>Login:
+						<input type="text" name="login"/>
+					</label>
+				</p>
+				<p>
+					<label>Senha:
+						<input type="text" name="password"/>
+					</label>
+				</p>
+				<p>
+					<a href="../../">Cancelar</a> |
+					<input type="submit" value="Entrar" />
+				</p>
+			</form>
+		</div>
+    </div>
+</div>

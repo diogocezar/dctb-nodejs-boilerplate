@@ -5,14 +5,12 @@ class AuthRoute {
     constructor() {
         this.router = require('express').Router()
         this.controller = require('../controllers/AuthController');
-        this.setRoutes();
+        this.setAuth();
     }
-    setRoutes() {
-        this.router.get('/login', function (req, res){
-            this.controller.login(req, res);
-        })
-        this.router.use(function(req, res, next){
-            this.controller.middleWare(req, res, next);
+    setAuth() {
+        const AuthRoute = this;
+        this.router.use(function (req, res, next) {
+            AuthRoute.controller.middleWare(req, res, next);
         })
     }
 }

@@ -13,7 +13,8 @@ class App{
 		this.indexRouter     = require('./routes/index')
 		this.productRouter   = require('./routes/product')
 		this.userRouter      = require('./routes/user')
-		this.underAuthRouter = require('./routes/underAuth');
+		this.underAuthRouter = require('./routes/underAuth')
+		this.loginRouter     = require('./routes/login')
 
 		this.app = this.express()
 
@@ -30,6 +31,7 @@ class App{
 		this.app.use('/product', this.productRouter)
 		this.app.use('/user', this.userRouter)
 		this.app.use('/under-auth', this.underAuthRouter)
+		this.app.use('/login', this.loginRouter)
 
 		this.app.use(function (req, res, next) {
 			const createError = require('http-errors')
@@ -42,7 +44,7 @@ class App{
 			res.locals.message = err.message
 			res.locals.error = req.app.get('env') === 'development' ? err : {}
 			res.status(err.status || 500)
-			res.render('pages/error', helperResponse)
+			res.render('pages/error/error', helperResponse)
 		});
 	}
 }
