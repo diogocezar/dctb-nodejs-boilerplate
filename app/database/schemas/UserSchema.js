@@ -1,3 +1,7 @@
+/**
+ * This class representes a user schema
+ */
+
 const BaseSchema = require('./BaseSchema');
 
 class UserSchema extends BaseSchema{

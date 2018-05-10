@@ -1,5 +1,5 @@
 /**
- * DataBase Configuration Class
+ * DataBase configuration class
  */
 class DataBase{
 	/**
@@ -11,13 +11,13 @@ class DataBase{
 		this.connect()
 	}
 	/**
-	 * Return Connection String
+	 * Return connection string
 	 */
 	getConnString(config){
 		return `mongodb://${config.dataBase.host}:${config.dataBase.port}/${config.dataBase.base}`;
 	}
 	/**
-	 * Connect to DataBase
+	 * Connect to database
 	 */
 	connect(){
 		this.mongoose.connect(this.getConnString(this.config));

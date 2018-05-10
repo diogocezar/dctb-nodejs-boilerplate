@@ -1,3 +1,7 @@
+/**
+ * This class represents user model
+ */
+
 const BaseModel = require('./BaseModel');
 
 class UserModel extends BaseModel{

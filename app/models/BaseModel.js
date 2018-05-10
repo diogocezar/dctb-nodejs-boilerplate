@@ -1,6 +1,7 @@
 /**
- * This class will be extended by all Models
+ * This class will be extended by all models
  */
+
 class BaseModel{
 	constructor(model) {
 		this.model = model

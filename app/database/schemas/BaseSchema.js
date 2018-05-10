@@ -1,4 +1,8 @@
 
+/**
+ * This class is a base schema that will be used by other schemas
+ */
+
 class BaseSchema {
     constructor(name, fields) {
         this.name     = name

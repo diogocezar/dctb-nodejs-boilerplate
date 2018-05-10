@@ -1,5 +1,6 @@
 /**
  * Auth controller with middleware to verify if user is logged
+ * alternative implementation with jwt
  */
 
 const BaseController = require('./BaseController');
@@ -10,6 +11,7 @@ class AuthController extends BaseController{
 		this.users               = require('../models/UserModel')
 		this.helperResponse      = require('../helpers/HelperResponse')
 		this.config              = require('../config/Config')
+		this.jwt                 = require('jsonwebtoken')
 	}
 	verify(req, res){
 		const AuthController = this;
@@ -31,24 +33,40 @@ class AuthController extends BaseController{
 					});
 				}
 				else{
-					req.session.admin = true;
-					res.redirect('/')
+					const payLoad = {
+						admin: true
+					}
+					const token = AuthController.jwt.sign(payLoad, AuthController.config.secret, {
+						expiresIn: AuthController.config.jwtExpires
+					})
+					res.redirect('/under-auth?token=' + token)
 				}
 			}
 		})
 	}
-	logout(req, res) {
-		const AuthController = this;
-		req.session.destroy(function(err){
-			AuthController.onError(err)
-			res.redirect('/login')
-		})
-	}
 	middleWare(req, res, next){
-		if(req.session && req.session.admin == true)
-			next();
-		else
-			res.redirect('/login')
+		const token = req.body.token || req.query.token || req.headers['x-access-token']
+		if(token){
+			this.jwt.verify(token, this.config.secret, function(err, decoded){
+				if(err){
+					return res.json({
+						sucess  : false,
+						message : "Failed to authenticate token." 
+					})
+				}
+				else{
+					req.logged  = true;
+					req.decoded = decoded;
+					next();
+				}
+			})
+		}
+		else{
+			return res.status(403).send({
+				sucess: false,
+				message: 'No token priveded.'
+			})
+		}
 	}
 }
 

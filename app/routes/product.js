@@ -1,6 +1,7 @@
 /**
- * This class representes Product Routes
+ * This class representes product routes
  */
+
 class ProductRoute{
 	constructor(){
 		this.router     = require('express').Router()

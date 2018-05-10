@@ -1,8 +1,10 @@
+/**
+ * This class representes a rout that need authentication
+ * just need to extend AuthRoute an invoke super()
+ */
+
 const AuthRoute = require('./auth');
 
-/**
- * This class represents underAuth routes
- */
 class UnderAuthRoute extends AuthRoute {
     constructor() {
         super()
@@ -10,9 +12,8 @@ class UnderAuthRoute extends AuthRoute {
     }
     setRoutes() {
         this.router.get('/', function (req, res, next) {
-            console.log('chegou');
             const helperResponse = require('../helpers/HelperResponse')
-            res.render('pages/under-auth/index', helperResponse);
+            res.render('pages/under-auth/index', helperResponse.returnWithReq(req));
         });
     }
 }

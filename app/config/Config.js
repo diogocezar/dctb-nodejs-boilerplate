@@ -1,35 +1,20 @@
 /**
- * Setting Configuration Class
+ * Setting configurations
  */
 class Config{
-	constructor(dataBase, port, dist, defaultPath, secret){
-		this.dataBase    = dataBase
-		this.port        = port
-		this.dist        = dist
-		this.defaultPath = defaultPath
-		this.secret      = secret
+	constructor(){
+		this.dataBase = {
+			host: 'localhost',
+			port: '27017',
+			base: 'products-list'
+		},
+		this.port        = 3000,
+		this.dist        = 'src',
+		this.defaultPath = './',
+		this.secret      = 'asimplesecret'
 	}
 }
 
-/**
- * Creating Configuration Attributes
- */
-const dataBaseConfig = {
-	host: 'localhost',
-	port: '27017',
-	base: 'products-list'
-}
+const config = new Config()
 
-const port        = 3000
-const dist        = 'src'
-const defaultPath = './'
-const secret      = 'asimplesecret'
-
-/**
- * Setting objetct to return
- */
-const config = new Config(dataBaseConfig, port, dist, defaultPath, secret)
-/**
- * Exporting Module
- */
 module.exports = config

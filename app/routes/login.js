@@ -1,6 +1,7 @@
 /**
  * This class represents login routes
  */
+
 class LoginRoute{
     constructor() {
  		this.router = require('express').Router()
@@ -11,10 +12,16 @@ class LoginRoute{
     setRoutes() {
         const LoginRoute = this;
         this.router.get('/', function(req,res){
-            res.render('pages/login/form', LoginRoute.helperResponse)
+            if(!req.session || req.session.admin != true)
+                res.render('pages/login/form', LoginRoute.helperResponse.returnWithReq(req))
+            else
+                res.redirect('/')
         })
         this.router.post('/verify', function (req, res){
             LoginRoute.controller.verify(req, res);
+        })
+        this.router.get('/logout', function (req, res) {
+            LoginRoute.controller.logout(req, res);
         })
     }
 }

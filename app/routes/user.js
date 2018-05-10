@@ -1,9 +1,13 @@
 /**
- * This class representes Product Routes
+ * This class representes a user routes that need authentication
+ * just need to extend AuthRoute an invoke super()
  */
-class UserRoute{
+
+const AuthRoute = require('./auth');
+
+class UserRoute extends AuthRoute {
 	constructor(){
-		this.router     = require('express').Router()
+		super()
 		this.controller = require('../controllers/UserController')
 		this.setRoutes();
 	}

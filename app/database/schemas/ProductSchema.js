@@ -1,3 +1,7 @@
+/**
+ * This class representes a product schema
+ */
+
 const BaseSchema = require('./BaseSchema');
 
 class ProductSchema extends BaseSchema{

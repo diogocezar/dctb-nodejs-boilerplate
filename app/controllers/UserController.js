@@ -1,3 +1,7 @@
+/**
+ * This class representes user controller
+ */
+
 const BaseController = require('./BaseController');
 
 class UserController extends BaseController{
@@ -11,21 +15,20 @@ class UserController extends BaseController{
 		this.model.findAll((err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data;
-			res.render('pages/user/list', this.helperResponse)
+			res.render('pages/user/list', this.helperResponse.returnWithReq(req))
 		});
 	}
 	form(req, res) {
 		this.helperResponse.data = {name: '', login: '', password:'', admin:true, _id:''}
-		res.render('pages/user/form', this.helperResponse)
+		res.render('pages/user/form', this.helperResponse.returnWithReq(req))
 	}
 	formWithData(req, res) {
 		var id = req.params.id
 		this.model.findById(id, (err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data
-			console.log(data)
 			this.helperResponse.path = "../../"
-			res.render('pages/user/form', this.helperResponse)
+			res.render('pages/user/form', this.helperResponse.returnWithReq(req))
 		})
 	}
 	save(req, res){

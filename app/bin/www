@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Main Class to Execute Project
+ * Main class to execute project
  */
 class www{
 	/**
@@ -57,7 +57,7 @@ class www{
 		}
 	}
 	/**
-	 * Event listener for HTTP server "listening" event.
+	 * Event listener for HTTP server "listening" event
 	 */
 	onListening() {
 		const addr  = this.address()

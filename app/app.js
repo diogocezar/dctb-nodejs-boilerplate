@@ -9,14 +9,26 @@ class App{
 		this.logger         = require('morgan')
 		this.expressLayout  = require('express-ejs-layouts')
 		this.bodyParser     = require('body-parser')
+		this.config         = require('./config/Config')
 
+		// routes
 		this.indexRouter     = require('./routes/index')
 		this.productRouter   = require('./routes/product')
 		this.userRouter      = require('./routes/user')
 		this.underAuthRouter = require('./routes/underAuth')
 		this.loginRouter     = require('./routes/login')
+		this.logoutRouter    = require('./routes/logout')
 
 		this.app = this.express()
+
+		// session
+		this.session = require('express-session')
+		this.app.use(this.session({
+			secret: this.config.secret,
+			resave: true,
+			saveUninitialized: true,
+			maxAge: Date.now() + (30 * 86400 * 1000)
+		}))
 
 		this.app.set('views', this.path.join(__dirname, 'views'))
 		this.app.set('view engine', 'ejs')
@@ -32,6 +44,7 @@ class App{
 		this.app.use('/user', this.userRouter)
 		this.app.use('/under-auth', this.underAuthRouter)
 		this.app.use('/login', this.loginRouter)
+		this.app.use('/logout', this.logoutRouter)
 
 		this.app.use(function (req, res, next) {
 			const createError = require('http-errors')

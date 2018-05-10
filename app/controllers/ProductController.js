@@ -1,3 +1,7 @@
+/**
+ * This class representes product controller
+ */
+
 const BaseController = require('./BaseController');
 
 class ProductController extends BaseController{
@@ -11,12 +15,12 @@ class ProductController extends BaseController{
 		this.model.findAll((err, data) => {
 			this.onError(err)
 			this.helperResponse.data = data;
-			res.render('pages/product/list', this.helperResponse)
+			res.render('pages/product/list', this.helperResponse.returnWithReq(req))
 		});
 	}
 	form(req, res) {
 		this.helperResponse.data = {name: '', price: '', _id:''}
-		res.render('pages/product/form', this.helperResponse)
+		res.render('pages/product/form', this.helperResponse.returnWithReq(req))
 	}
 	formWithData(req, res) {
 		var id = req.params.id
@@ -24,7 +28,7 @@ class ProductController extends BaseController{
 			this.onError(err)
 			this.helperResponse.data = data
 			this.helperResponse.path = "../../"
-			res.render('pages/product/form', this.helperResponse)
+			res.render('pages/product/form', this.helperResponse.returnWithReq(req))
 		})
 	}
 	save(req, res){

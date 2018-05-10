@@ -1,3 +1,7 @@
+/**
+ * This class represents product model
+ */
+
 const BaseModel = require('./BaseModel');
 
 class ProductModel extends BaseModel{
