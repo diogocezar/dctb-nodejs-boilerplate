@@ -12,12 +12,14 @@ class App{
 		this.config         = require('./config/Config')
 
 		// routes
-		this.indexRouter     = require('./routes/index')
-		this.productRouter   = require('./routes/product')
-		this.userRouter      = require('./routes/user')
-		this.underAuthRouter = require('./routes/underAuth')
-		this.loginRouter     = require('./routes/login')
-		this.logoutRouter    = require('./routes/logout')
+		this.routes = {
+			index     : require('./routes/IndexRoute'),
+			product   : require('./routes/ProductRoute'),
+			user      : require('./routes/UserRoute'),
+			underAuth : require('./routes/UnderAuthRoute'),
+			login     : require('./routes/LoginRoute'),
+			logout    : require('./routes/LogoutRoute')
+		}
 
 		this.app = this.express()
 
@@ -39,12 +41,12 @@ class App{
 		this.app.use(this.cookieParser())
 		this.app.use(this.express.static(this.path.join(__dirname, '../public')))
 
-		this.app.use('/', this.indexRouter)
-		this.app.use('/product', this.productRouter)
-		this.app.use('/user', this.userRouter)
-		this.app.use('/under-auth', this.underAuthRouter)
-		this.app.use('/login', this.loginRouter)
-		this.app.use('/logout', this.logoutRouter)
+		this.app.use('/', this.routes.index)
+		this.app.use('/product', this.routes.product)
+		this.app.use('/user', this.routes.user)
+		this.app.use('/under-auth', this.routes.underAuth)
+		this.app.use('/login', this.routes.login)
+		this.app.use('/logout', this.routes.logout)
 
 		this.app.use(function (req, res, next) {
 			const createError = require('http-errors')

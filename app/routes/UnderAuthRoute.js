@@ -3,7 +3,7 @@
  * just need to extend AuthRoute an invoke super()
  */
 
-const AuthRoute = require('./auth');
+const AuthRoute = require('./AuthRoute');
 
 class UnderAuthRoute extends AuthRoute {
     constructor() {
