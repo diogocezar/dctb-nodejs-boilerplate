@@ -3,15 +3,25 @@
  */
 class App{
 	constructor(){
+		/**
+		 * Generic requires
+		 */
 		this.express        = require('express')
 		this.path           = require('path')
 		this.cookieParser   = require('cookie-parser')
 		this.logger         = require('morgan')
 		this.expressLayout  = require('express-ejs-layouts')
 		this.bodyParser     = require('body-parser')
+		this.session        = require('express-session')
+
+		/**
+		 * Configuration file
+		 */
 		this.config         = require('./config/Config')
 
-		// routes
+		/**
+		 * Routes imports
+		 */
 		this.routes = {
 			index     : require('./routes/IndexRoute'),
 			product   : require('./routes/ProductRoute'),
@@ -23,8 +33,9 @@ class App{
 
 		this.app = this.express()
 
-		// session
-		this.session = require('express-session')
+		/**
+		 * Session configuration
+		 */
 		this.app.use(this.session({
 			secret: this.config.secret,
 			resave: true,
@@ -32,6 +43,9 @@ class App{
 			maxAge: Date.now() + (30 * 86400 * 1000)
 		}))
 
+		/**
+		 * General configurations
+		 */
 		this.app.set('views', this.path.join(__dirname, 'views'))
 		this.app.set('view engine', 'ejs')
 		this.app.use(this.logger('dev'))
@@ -41,6 +55,9 @@ class App{
 		this.app.use(this.cookieParser())
 		this.app.use(this.express.static(this.path.join(__dirname, '../public')))
 
+		/**
+		 * Routes middlewares
+		 */
 		this.app.use('/', this.routes.index)
 		this.app.use('/product', this.routes.product)
 		this.app.use('/user', this.routes.user)
@@ -48,6 +65,9 @@ class App{
 		this.app.use('/login', this.routes.login)
 		this.app.use('/logout', this.routes.logout)
 
+		/**
+		 * Errors middlewares
+		 */
 		this.app.use(function (req, res, next) {
 			const createError = require('http-errors')
 			next(createError(404))

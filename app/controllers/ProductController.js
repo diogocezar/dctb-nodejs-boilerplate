@@ -45,7 +45,7 @@ class ProductController extends BaseController{
 			})
 		} else {
 			this.model.insert({
-				name : name,
+				name  : name,
 				price : price
 			}, (err, result) => {
 				this.onError(err)
